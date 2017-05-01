@@ -90,6 +90,10 @@ int main(void) {
 		}
 
 		iprintf("\x1b[10;0HFrame = %d",frame);
+		iprintf("\x1b[12;0HFixed Point Addition %d, %d", fixedToInt(intToFixed(64,8)+intToFixed(8,8),8), 64+8);
+		iprintf("\x1b[13;0HFixed Point Soustraction %d, %d", fixedToInt(intToFixed(64,8)-intToFixed(8,8),8), 64-8);
+		iprintf("\x1b[14;0HFixed Point Multi %d, %d", fixedToInt(intToFixed(64,8)*intToFixed(8,8),16), 64*8);
+		iprintf("\x1b[15;0HFixed Point Division %d, %d", intToFixed(64,8)/intToFixed(8,8), 64/8);
 		iprintf("\x1b[16;0HTouch x = %04X, %04X\n", touchXY.rawx, touchXY.px);
 		iprintf("Touch y = %04X, %04X\n", touchXY.rawy, touchXY.py);
 

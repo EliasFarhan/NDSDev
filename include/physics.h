@@ -10,14 +10,33 @@
 
 #include <nds.h>
 
-#define Fixed int
+struct Fixed
+{
+	int number;
+	unsigned int bits;
+	int fixed_number;
 
-class Point
+	Fixed(int number, unsigned bits):number(number), bits(bits)
+	{
+		fixed_number = intToFixed(number, bits);
+	}
+
+	Fixed operator+(struct Fixed f);
+	Fixed operator-(struct Fixed f);
+	Fixed operator*(struct Fixed f);
+	Fixed operator/(struct Fixed f);
+
+
+};
+class Vector2;
+class Point2;
+
+class Point2
 {
 	//pixel positions
 public:
-	Point(int x, int y);
-
+	Point2(int x, int y);
+	Vector2 GetVector2();
 private:
 	int x,y;
 };
@@ -25,6 +44,8 @@ private:
 class Vector2
 {
 	//physics position
+	Vector2(Fixed x, Fixed y);
+	Point2 GetPoint2();
 private:
 	Fixed x,y;
 
@@ -32,17 +53,22 @@ private:
 
 class Rigidbody
 {
-
+public:
+	Point2 GetPixelsPosition();
+private:
+	Vector2 position;
 };
 
 class Box
 {
-
+private:
+	Vector2 offset;
 };
 
 class Circle
 {
-
+private:
+	Vector2 offset;
 };
 
 #endif /* INCLUDE_PHYSICS_H_ */
